@@ -1,0 +1,27 @@
+<section class="container best-sellers">
+    <div class="top-ofsection-text">
+        <h4 class="section-preheader">Best Sellers</h4>
+        <h1>“The Best Chocolate I’ve Ever Had”</h1>
+        <h4 class="section-preheader">-A Lot Of People</h4>
+    </div>
+
+    <div class="parent">
+        <div class="div1">
+            <!-- First product image -->
+            <img src="{{ product.images[0] | image_url: width: 600 }}" alt="{{ product.images[0].alt | escape }}">
+        </div>
+        <div class="div2">
+            <!-- Second product image (if it exists) -->
+            {% if product.images.size > 1 %}
+            <img src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.images[1].alt | escape }}">
+            {% endif %}
+        </div>
+        <div class="div3">
+            <!-- Third product image (if it exists) -->
+            {% if product.images.size > 2 %}
+            <img src="{{ product.images[2] | image_url: width: 600 }}" alt="{{ product.images[2].alt | escape }}">
+            {% endif %}
+        </div>
+    </div>
+
+</section>
