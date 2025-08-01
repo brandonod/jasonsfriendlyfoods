@@ -1,7 +1,18 @@
 <!-- sections/hero.liquid -->
-<section class="hero">
-  <h1>{{ section.settings.heading }}</h1>
-  <p>{{ section.settings.subtext }}</p>
+<section id="hero" class="hero-section">
+  <video autoplay muted loop playsinline class="hero-video">
+    {% if section.settings.hero_video != blank %}
+      <source src="{{ section.settings.hero_video }}" type="video/mp4">
+    {% else %}
+      <source src="https://cdn.shopify.com/videos/c/o/v/ee53bcc9634644a0a44d8a1e80e86d05.mp4" type="video/mp4">
+    {% endif %}
+    <img src="{{ section.settings.hero_image | image_url: '720x' }}" alt="{{ section.settings.hero_image.alt }}">
+  </video>
+
+  <div class="hero-content">
+    <h3 class="subheadline">{{ section.settings.subheadline }}</h3>
+    <h1>{{ section.settings.headline }}</h1>
+  </div>
 </section>
 
 {% schema %}
@@ -9,15 +20,27 @@
   "name": "Hero Section",
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Welcome to My Store"
+      "type": "url",
+      "id": "hero_video",
+      "label": "Hero video URL",
+      "info": "Upload your MP4 video to Files and paste the URL here"
     },
     {
-      "type": "textarea",
-      "id": "subtext",
-      "label": "Subtext"
+      "type": "text",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Where Delicious Meets Healthy"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Chocolate snacks made with friendly ingredients"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
     }
   ]
 }
