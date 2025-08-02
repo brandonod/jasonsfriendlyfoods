@@ -1,27 +1,78 @@
+{% assign product1 = all_products['lavender-sea-salt-bark'] %}
+{% assign product2 = all_products['salted-caramel-bark'] %}
+{% assign product3 = all_products['new-chocolate-bark'] %}
+
 <section class="container best-sellers">
-    <div class="top-ofsection-text">
-        <h4 class="section-preheader">Best Sellers</h4>
-        <h1>“The Best Chocolate I’ve Ever Had”</h1>
-        <h4 class="section-preheader">-A Lot Of People</h4>
-    </div>
+  <div class="top-ofsection-text">
+    <h4 class="section-preheader">Best Sellers</h4>
+    <h1>“The Best Chocolate I’ve Ever Had”</h1>
+    <h4 class="section-preheader">-A Lot Of People</h4>
+  </div>
 
-    <div class="parent">
-        <div class="div1">
-            <!-- First product image -->
-            <img src="{{ product.images[0] | image_url: width: 600 }}" alt="{{ product.images[0].alt | escape }}">
-        </div>
-        <div class="div2">
-            <!-- Second product image (if it exists) -->
-            {% if product.images.size > 1 %}
-            <img src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.images[1].alt | escape }}">
-            {% endif %}
-        </div>
-        <div class="div3">
-            <!-- Third product image (if it exists) -->
-            {% if product.images.size > 2 %}
-            <img src="{{ product.images[2] | image_url: width: 600 }}" alt="{{ product.images[2].alt | escape }}">
-            {% endif %}
-        </div>
+  <div class="parent">
+    <div class="div1">
+      {% if section.settings.custom_image1 != blank %}
+        <img src="{{ section.settings.custom_image1 | image_url: width: 600 }}" alt="Best Seller 1">
+      {% else %}
+        <img src="{{ product1.featured_image | image_url: width: 600 }}" alt="{{ product1.title }}">
+      {% endif %}
+      <div class="product-info lavendar-sea-salt-bark">
+        <h5>{{ product1.title }}</h5>
+        <a href="{{ product1.url }}" <span class="price">{{ product1.price | money }}</span></a>
+      </div>
     </div>
-
+    <div class="div2">
+      {% if section.settings.custom_image2 != blank %}
+        <img src="{{ section.settings.custom_image2 | image_url: width: 600 }}" alt="Best Seller 2">
+      {% else %}
+        <img src="{{ product2.featured_image | image_url: width: 600 }}" alt="{{ product2.title }}">
+      {% endif %}
+      <div class="product-info salted-caramel-bark">
+        <h5>{{ product2.title }}</h5>
+        <a href="{{ product2.url }}" <span class="price">{{ product2.price | money }}</span></a>
+      </div>
+    </div>
+    <div class="div3">
+      {% if section.settings.custom_image3 != blank %}
+        <img src="{{ section3.settings.custom_image3 | image_url: width: 600 }}" alt="Best Seller 3">
+      {% else %}
+        <img src="{{ product3.featured_image | image_url: width: 600 }}" alt="{{ product3.title }}">
+      {% endif %}
+      <div class="product-info raspbery-chocolate-bark">
+        <h5>{{ product3.title }}</h5>
+        <a href="{{ product3.url }}" <span class="price">{{ product3.price | money }}</span></a>
+      </div>
+    </div>
+  </div>
+    <div class="red-btn-wrapper">
+        <button class="red-btn">Shop All Chocolate</button>
+    </div>
 </section>
+
+{% schema %}
+{
+  "name": "Best Sellers",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "custom_image1",
+      "label": "Custom Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image2",
+      "label": "Custom Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image3",
+      "label": "Custom Image 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers"
+    }
+  ]
+}
+{% endschema %}
