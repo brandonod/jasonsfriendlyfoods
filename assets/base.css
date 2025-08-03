@@ -304,14 +304,16 @@ a:hover {
     margin-top: -75px;
     background-image: url('/assets/value-carousel-bg.svg');
     background-size: cover;
-    min-height: 328px;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 370px;
     display: flex;
     align-items: center;
     overflow: hidden;
     position: relative;
     padding-left: 15px;
     z-index: 5;
-    position: relative;
+    
 }
 
 .value-carousel-track {
@@ -383,7 +385,7 @@ a:hover {
 }
 
 .best-sellers {
-  margin-top: 100px;
+  padding-top: 150px;
   margin-bottom: 100px;
   z-index: -5;
   display: flex;
@@ -467,8 +469,12 @@ a:hover {
 }
 
 .paper-bg {
-  background-image: url('/assets/paper-bg(1).png');
-  background-size: cover;
+  background-image: url('/assets/paper-bg-huge.png');
+  background-repeat: no-repeat;
+  background-size: cover;   /* or 'contain' depending on the image */
+  background-position: center;
+  overflow: visible;        /* Allow frayed edges to overflow */
+  z-index: 1;
   padding: 150px 0;
   position: relative;
   z-index: 1;
@@ -565,6 +571,7 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5em;
+  z-index: -1;
 }
 
 .pink-text {
@@ -589,7 +596,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Changed from 'left' to proper value */
-  width: clamp(450px,100%, 1000px);
+  width: clamp(350px,100%, 1000px);
   background: var(--background-color);
   border-radius: 25px;
   padding: 44px 57px;
@@ -675,13 +682,19 @@ a:hover {
 
 .pink-divider {
   background-image: url('/assets/pink-section-divider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;   /* or 'contain' depending on the image */
+  background-position: center;
+  overflow: visible;        /* Allow frayed edges to overflow */
+  z-index: 5;
   margin-top: -250px;
   background-color: var(--deep-brown);
+  height: 400px;
 }
 
 .featured-food {
   background-color: var(--secondary-red);
-  padding-top: 150px;
+
 }
 
 .featured-food-content-wrapper {
@@ -746,8 +759,9 @@ a:hover {
 
 .oregon-festival {
   background-color: var(--deep-brown);
-  margin-top: -50px;
+  margin-top: -70px;
   margin-bottom: -50px;
+  padding-bottom: 100px;
 }
 .oregon-festival .top-ofsection-text {
   display: flex;
@@ -756,7 +770,7 @@ a:hover {
   align-items: center;
   margin-bottom: 20px;
   color: var(--text-white);
-  padding: 90px;
+  padding: 45px;
 }
 
 .oregon-festival .top-ofsection-text .section-preheader {
@@ -769,8 +783,8 @@ a:hover {
 }
 
 .smaller-divider {
-  min-height: 150px;
-  max-height: 350px;
+ margin-top: -70px;
+ 
 }
 
 
@@ -803,6 +817,7 @@ a:hover {
     gap: 30px;
     max-width: 800px;
     margin: 0 auto;
+    justify-content: center;
 }
 
 /* Grid items */
@@ -823,6 +838,9 @@ a:hover {
 
 .grid-item p {
   color: var(--text-white);
+  font-size: var(--h4-size);
+  font-weight: 800;
+  line-height: 1em;
 }
 
 /* Text styles */
@@ -855,6 +873,7 @@ a:hover {
   margin: 0 auto;
   padding: 0 1.5em;
   text-align: center;
+  padding-top:100px;
 }
 
 .jason-childood-content {
@@ -898,13 +917,18 @@ a:hover {
 
 .newsletter {
   background-color: var(--cream-white);
-  padding: 150px 20px;
+  padding: 235px 20px;
   text-align: center;
   margin-top: -50px;
+  z-index: -1;
+}
+
+.newsletter-content-wrapper {
 }
 
 .newsletter h3 {
   color: var(--primary-red);
+  font-weight: 800;
 }
 .newsletter h2 {
   color: var(--deep-brown);
