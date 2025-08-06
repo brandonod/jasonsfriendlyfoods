@@ -12,11 +12,23 @@
   --green: #0AB457;
   --cream-white: #FBFDF1;
 
-  --h1-size: clamp(52px, 4.5vw + 0.5rem, 65px);
-  --h2-size: clamp(41.6px, 3.8vw + 0.4rem, 52px);
-  --h3-size: clamp(33.6px, 3vw + 0.3rem, 42px);
-  --h4-size: clamp(26.4px, 2.5vw + 0.3rem, 33px);
+  /* Responsive Typography */
+  --h1-sixtyfive: clamp(36px, 6vw, 65px);
+  --h2-fiftytwo: clamp(28px, 5vw, 52px);
+  --h3-fortytwo: clamp(24px, 4vw, 42px);
+  --h4-thirtythree: clamp(20px, 3vw, 33px);
+  --h5-twentysix: clamp(18px, 2.5vw, 26px);
+  --body-size: clamp(14px, 2vw, 18px);
+  --small-size: clamp(12px, 1.8vw, 16px);
+  --button-size: 22px;
   --heading-letter-spacing: -0.02em;
+  
+  /* Spacing */
+  --section-padding: clamp(60px, 10vw, 150px);
+  --container-padding: clamp(1rem, 3vw, 1.5rem);
+  --gap-small: clamp(10px, 2vw, 20px);
+  --gap-medium: clamp(20px, 4vw, 40px);
+  --gap-large: clamp(40px, 6vw, 80px);
 }
 
 /* Reset */
@@ -30,209 +42,162 @@
 body, p, li, span, .site-footer, .product-description {
   font-family: 'Poppins', sans-serif;
   color: var(--deep-brown);
-  font-size: 1rem;
+  font-size: var(--body-size);
   line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6, .site-header, .section-title {
   font-family: 'Rammetto One', cursive;
   color: var(--primary-red);
-  letter-spacing: 1px;
+  letter-spacing: var(--heading-letter-spacing);
 }
 
-h1 {
-  font-size: clamp(52px, 4.5vw + 0.5rem, 65px);
-  letter-spacing: -0.02em;
-}
+h1 { font-size: var(--h1-sixtyfive); }
+h2 { font-size: var(--h2-fiftytwo); }
+h3 { font-size: var(--h3-fortytwo); }
+h4 { font-size: var(--h4-thirtythree); }
+h5 { font-size: var(--h5-twentysix); }
 
-h2 {
-  font-size: clamp(41.6px, 3.8vw + 0.4rem, 52px);
-  letter-spacing: -0.02em;
-}
 
-h3 {
-  font-size: clamp(33.6px, 3vw + 0.3rem, 42px);
-  letter-spacing: -0.02em;
-}
-
-h4 {
-  font-size: clamp(26.4px, 2.5vw + 0.3rem, 33px);
-  letter-spacing: -0.02em;
-}
 
 .h4-poppins {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(24.4px, 2.5vw + 0.3rem, 30px);
+  font-size: var(--h4-thirtythree);
   letter-spacing: -0.03em;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-
-h5 {
-  font-size: clamp(21px, 2vw + 0.2rem, 26px);
-  letter-spacing: -0.02em;
-}
-
 p {
-  font-size: 16px;
+  font-size: var(--body-size);
   letter-spacing: 0.005em;
 }
 
-/* Buttons */
-button, .btn, input[type="submit"] {
-  background: var(--secondary-red);
+/* Base Button Styles */
+button, .btn, input[type="submit"], 
+.red-btn, .green-btn, .orange-btn {
+  background: var(--secondary-red); /* This will be overridden by specific buttons */
   color: var(--text-white);
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: 22px;
   border: none;
-  padding: 19px 27px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: auto;
-  display: inline-block;
-}
-
-/* Wrapper for the red button shadow effect */
-.red-btn-wrapper {
-  margin-top: 20px;
-  background-color: var(--deep-brown); /* Using a darker color for shadow */
-  border-radius: .5em;
-  display: inline-block;
-  position: relative;
-  /* Prevents stretching in flex container */
-  width: fit-content;
-}
-
-.red-btn-wrapper-white {
-  background-color: var(--text-white); /* Using a white color for shadow */
-}
-
-/* Red button with shadow effect */
-.red-btn {
-  background: var(--secondary-red);
-  color: var(--text-white);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  font-size: 22px;
-  border: none;
-  border-radius: .5em;
+  border-radius: 0.5em;
   padding: 19px 27px;
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-block;
   position: relative;
-  /* Initial position - slightly offset from wrapper */
   transform: translate(5px, -5px);
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
-.red-btn:hover {
-  /* Move button relative to its current position */
+@media (max-width: 768px) {
+  button, .btn, input[type="submit"],
+  .red-btn, .green-btn, .orange-btn {
+    font-size: var(--button-size);
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Shared Hover and Active Effects */
+.red-btn:hover, .green-btn:hover, .orange-btn:hover, .btn:hover {
   transform: translate(10px, -10px);
-  color: var(--text-white);
 }
 
-.red-btn:active {
-  /* Slightly change hue on click */
+.red-btn:active, .green-btn:active, .btn:active {
   filter: hue-rotate(-15deg);
-  /* Optional: add a slight scale down for click feedback */
   transform: translate(5px, -10px) scale(0.98);
-}
-
-.green-btn-wrapper {
-  margin-top: 20px;
-  background-color: var(--text-white); /* Using a darker color for shadow */
-  border-radius: 20px;
-  display: inline-block;
-  position: relative;
-  /* Prevents stretching in flex container */
-  width: fit-content;
-}
-
-/* Red button with shadow effect */
-.green-btn {
-  background: var(--green);
-  color: var(--text-white);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  font-size: 22px;
-  border: none;
-  border-radius: 20px;
-  padding: 19px 27px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-block;
-  position: relative;
-  /* Initial position - slightly offset from wrapper */
-  transform: translate(5px, -5px);
-}
-
-.green-btn:hover {
-  /* Move button relative to its current position */
-  transform: translate(10px, -10px);
-  color: var(--text-white);
-}
-
-.green-btn:active {
-  /* Slightly change hue on click */
-  filter: hue-rotate(-15deg);
-  /* Optional: add a slight scale down for click feedback */
-  transform: translate(5px, -10px) scale(0.98);
-}
-
-.orange-btn-wrapper {
-  margin-top: 20px;
-  background-color: var(--primary-red);
-  border-radius: 20px;
-  display: inline-block;
-  position: relative;
-  /* This is the key fix - prevents stretching in flex container */
-  align-self: flex-start;
-  width: fit-content;
-}
-
-.orange-btn {
-  background: var(--accent-orange);
-  color: var(--text-white);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  font-size: 22px;
-  border: none;
-  border-radius: 20px;
-  padding: 19px 27px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-block;
-  position: relative;
-  /* Initial position - slightly offset from wrapper */
-  transform: translate(5px, -5px);
-  text-decoration: none; /* Remove underline from link */
-}
-
-.orange-btn:hover {
-  /* Move button relative to its current position */
-  transform: translate(10px, -10px);
-  color: var(--text-white);
 }
 
 .orange-btn:active {
-  /* Slightly change hue on click - adjust the hue value as needed */
   filter: hue-rotate(15deg);
-  /* Optional: add a slight scale down for click feedback */
   transform: translate(5px, -10px) scale(0.98);
 }
 
-/* Links */
+/* Red Button Specifics */
+.red-btn {
+  background: var(--secondary-red);
+  
+}
+
+/* Green Button Specifics */
+.green-btn {
+  background: var(--green);
+  
+}
+
+/* Orange Button Specifics */
+.orange-btn {
+  background: var(--accent-orange); 
+}
+
+/* Lavendar Button Specifics */
+.lavendar-btn {
+  background: var(--lavendar-sea-salt-bark); 
+}
+
+/* Button Wrapper Styles */
+.red-btn-wrapper, .green-btn-wrapper, .orange-btn-wrapper, .red-btn-wrapper-white, .lavendar-btn-wrapper {
+  margin-top: 20px;
+  border-radius: 20px; /* Will override as needed */
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  border-radius: .5em;
+}
+
+.red-btn-wrapper {
+  background-color: var(--deep-brown);
+  border-radius: .5em;
+}
+
+.red-btn-wrapper-white {
+  background-color: var(--text-white);
+  border-radius: .5em;
+}
+
+.green-btn-wrapper {
+  background-color: var(--text-white);
+}
+
+.orange-btn-wrapper {
+  background-color: var(--primary-red);
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  button, .btn, input[type="submit"],
+  .red-btn, .green-btn, .orange-btn {
+    font-size: var(--button-size);
+    width: 100%;
+    display: block;
+  }
+
+  .red-btn-wrapper,
+  .green-btn-wrapper,
+  .orange-btn-wrapper,
+  .red-btn-wrapper-white {
+    width: 100%;
+  }
+}
+
+
+
+/* General link styles */
 a {
   color: var(--primary-red);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
-a:hover {
+/* Only apply hover color change to links that are NOT buttons */
+a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
   color: var(--accent-orange);
 }
+
 
 /* Layout Helpers */
 .container {
@@ -281,7 +246,7 @@ a:hover {
   color: var(--text-white);
   margin-top: 24px;
   margin-bottom: 65px;
-  line-height: 71px;
+  line-height: 1.2;
 }
 
 .hero-content h3 {
@@ -357,7 +322,7 @@ a:hover {
 }
 .section-preheader {
   font-family: 'poppins', sans-serif;
-  font-size: var(--h4-size);
+  font-size: var(--h4-thirtythree);
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -373,7 +338,7 @@ a:hover {
 }
 
 .top-ofsection-text h1 {
-  font-size: var(--h1-size);
+  font-size: var(--h1-sixtyfive);
   font-weight: 800;
   letter-spacing: var(--heading-letter-spacing);
   text-align: center;
@@ -418,6 +383,8 @@ a:hover {
 .product-info {
   padding: 1em;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Responsive layout */
@@ -469,7 +436,7 @@ a:hover {
 }
 
 .paper-bg {
-  background-image: url('/assets/paper-bg-huge.png');
+  background-image: url('/assets/paper-bg(1).png');
   background-repeat: no-repeat;
   background-size: cover;   /* or 'contain' depending on the image */
   background-position: center;
@@ -515,16 +482,16 @@ a:hover {
 
 .row1 img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 4/3;
   border-radius: 15px;
   object-fit: cover;
   max-height: 670px;
   display: block;
-  margin: -15px 0 15px 15px;
+  margin: -10px 0 15px 15px;
 }
 
 .row1 img:hover {
-  transform: translate(10px, -10px);
+  transform: translate(5px, -10px);
   transition: all 0.2s ease;
 }
 
@@ -558,9 +525,10 @@ a:hover {
 .value-prop-testimonials {
   background-color: var(--deep-brown);
   margin-top: -65px;
-  z-index: -1;
+  
   padding-top: 225px;
   padding-bottom:225px;
+  position: relative;
 }
 
 .value-prop-content-wrapper {
@@ -602,6 +570,10 @@ a:hover {
   padding: 44px 57px;
 }
 
+.last {
+  gap: 25px;
+}
+
 /* Create the staggered effect */
 .testimonial:nth-child(2) {
   margin-top: 85px; /* Adjust this value to match your design */
@@ -636,13 +608,14 @@ a:hover {
   }
 
   .testimonial:nth-child(4) {
-    margin-top: 0; /* Remove offset on mobile */
+    margin-top: 25px; /* Remove offset on mobile */
     margin-left: 0
   }
   
   .testimonial {
     padding: 30px 25px; /* Smaller padding on mobile */
   }
+
 }
 
 /* Rest of your existing CSS stays the same */
@@ -650,6 +623,13 @@ a:hover {
   width: 65px;
   height: 65px;
   margin-right: 5px;
+}
+
+@media (max-width: 462px) {
+  .stars img {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .testimonial-author {
@@ -694,7 +674,8 @@ a:hover {
 
 .featured-food {
   background-color: var(--secondary-red);
-
+  padding-top: 30px;
+  position: relative;
 }
 
 .featured-food-content-wrapper {
@@ -726,16 +707,22 @@ a:hover {
 .featured-food-content-image {
   flex: 1;
   min-width: 0; /* Prevents flex item from overflowing */
-  width: 464px;
-  height: 575px;
+  width: 100%;
+  aspect-ratio: 3/4;
   background-color: var(--green);
   border-radius: 15px;
   margin-bottom: 275px;
 }
 
+.featured-food-content-image:hover img {
+  transform: translate(5px, -10px);
+  transition: all 0.2s ease;
+}
+
+
 .featured-food-content-image img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 3/4;
   border-radius: 15px;
   object-fit: cover;
   display: block;
@@ -745,23 +732,27 @@ a:hover {
 @media (max-width: 768px) {
   .featured-food-content-wrapper {
     flex-direction: column;
-    gap: 30px;
+    gap: 50px;
   }
   
-  .featured-food-content, .featured-food-content-image {
+  .featured-food-content-image img, .featured-food-content-image{
     width: 100%;
+    aspect-ratio: 1/1; /* Adjusts aspect ratio for mobile */
   }
   
   .featured-food-content {
-    text-align: center; /* Center text on mobile for better readability */
+    gap: 55px;
+    justify-content: center;
+    text-align: center;
   }
 }
 
 .oregon-festival {
   background-color: var(--deep-brown);
-  margin-top: -70px;
+  
   margin-bottom: -50px;
   padding-bottom: 100px;
+  position: relative;
 }
 .oregon-festival .top-ofsection-text {
   display: flex;
@@ -771,6 +762,7 @@ a:hover {
   margin-bottom: 20px;
   color: var(--text-white);
   padding: 45px;
+  position: relative;
 }
 
 .oregon-festival .top-ofsection-text .section-preheader {
@@ -838,7 +830,7 @@ a:hover {
 
 .grid-item p {
   color: var(--text-white);
-  font-size: var(--h4-size);
+  font-size: var(--h4-thirtythree);
   font-weight: 800;
   line-height: 1em;
 }
@@ -915,6 +907,19 @@ a:hover {
   justify-content: start;
 }
 
+@media screen and (max-width: 768px) {
+  .four-value-prop {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  
+  .four-value-prop-item {
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+}
+
 .newsletter {
   background-color: var(--cream-white);
   padding: 235px 20px;
@@ -976,7 +981,448 @@ input[type="email"]::placeholder {
   color: #4C1E0F4A;
   font-family: 'poppins', sans-serif;
   font-weight: 800;
-  font-size: 25px;
-  padding-left: 20px;
+  font-size: var(--h5-twentysix);
+  padding-left: 1em;
   align-self: center;
+}
+
+.custom-shape-divider-bottom-1754329088 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1754329088 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 119px;
+}
+
+.custom-shape-divider-bottom-1754329088 .shape-fill {
+    fill: #4C1E0F;
+}
+
+.custom-shape-divider-bottom-1754329452 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1754329452 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 147px;
+}
+
+.custom-shape-divider-bottom-1754329452 .shape-fill {
+    fill: #E8274A;
+}
+
+@media (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
+  
+}
+
+@media (min-width: 769px) {
+  .mobile {
+    display: none;
+  }
+}
+
+/* Product Template */
+
+/* Product Template Styles */
+.product {
+  background: #EFEDF3;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.product__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Product Media Section */
+.product__media {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.product__image-wrapper {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product__image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Ingredients Section */
+.product__ingredients {
+  background: var(--deep-brown);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+
+.ingredient {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.ingredient__icon {
+  color: #8b5cf6;
+  margin-bottom: 0.5rem;
+}
+
+.ingredient__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'rammetto one', cursive;
+}
+
+.ingredient__label span {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'rammetto one', cursive;
+}
+
+/* Product Info Section */
+.product__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.product__header {
+  text-align: left;
+}
+
+.product__subtitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--deep-brown);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 2px;
+}
+
+.product__title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #8b5cf6;
+  margin: 0;
+  line-height: 1.1;
+  text-transform: capitalize;
+}
+
+.product__description {
+  color: var(--deep-brown);
+  margin: 1rem 0;
+  font-family: 'rammetto one', cursive;
+  font-size: var(--small-size);
+}
+
+.product__description p {
+  font-family: 'rammetto one', cursive;
+  font-size: var(--small-size);
+  line-height: 1.6;
+}
+
+/* Purchase Options */
+.product__purchase {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.purchase-option {
+  background: var(--background-color);
+  border-radius: 1.25em;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.purchase-option:has(input:checked) {
+  border-color: #8b5cf6;
+}
+
+.purchase-option--subscription {
+  background: var(--background-color);
+}
+
+
+.purchase-option__radio {
+  display: flex;
+  align-items: center;
+}
+
+.purchase-option__radio input[type="radio"] {
+  margin-right: 1rem;
+  width: 20px;
+  height: 20px;
+  accent-color: #8b5cf6;
+}
+
+.purchase-option__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.purchase-option__type {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.purchase-option__price {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #8b5cf6;
+}
+
+.purchase-option--subscription .purchase-option__price {
+  color: #9ca3af;
+}
+
+.purchase-option__frequency {
+  margin-top: 1rem;
+  display: none;
+}
+
+.purchase-option--subscription:has(input:checked) .purchase-option__frequency {
+  display: block;
+}
+
+.frequency-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.frequency-select:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+/* Product Features */
+.product__features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.feature__icon {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature__icon svg {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+
+.feature__text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  font-display: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.feature__text span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  font-display: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 800;
+}
+
+/* Add to Cart Section */
+.product__cart {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  overflow: hidden;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.quantity-selector__btn {
+  background: none;
+  border: none;
+  padding: 1rem 5px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.quantity-selector__btn:hover {
+  background: #f9fafb;
+}
+
+.quantity-selector__input {
+  border: none;
+  width: 60px;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  font-weight: 600;
+  color: #374151;
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--h5-twentysix);
+  font-weight: 700;
+}
+
+.quantity-selector__input:focus {
+  outline: none;
+}
+
+
+
+.product__add-to-cart {
+  width: 100%;
+  background: #8b5cf6;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.product__add-to-cart:hover {
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product {
+    padding: 1rem;
+  }
+  
+  .product__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .product__title {
+    font-size: 2rem;
+  }
+  
+  .product__ingredients {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .ingredient {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .product__features {
+    grid-template-columns: 1fr;
+  }
+  
+  .product__cart {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .quantity-selector {
+    align-self: center;
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+@media (max-width: 480px) {
+  .product__title {
+    font-size: 1.75rem;
+  }
+  
+  .purchase-option__label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .ingredient__label {
+    font-size: 0.75rem;
+  }
 }
