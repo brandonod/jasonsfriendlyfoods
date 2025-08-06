@@ -1044,10 +1044,10 @@ input[type="email"]::placeholder {
 
 /* Product Template Styles */
 .product {
-  background: #EFEDF3;
+  background: var(--product-bg);
   min-height: 100vh;
   padding: 2rem 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'poppins', sans-serif;
 }
 
 .product__container {
@@ -1067,10 +1067,8 @@ input[type="email"]::placeholder {
 }
 
 .product__image-wrapper {
-  background: white;
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .product__image {
@@ -1082,7 +1080,7 @@ input[type="email"]::placeholder {
 
 /* Ingredients Section */
 .product__ingredients {
-  background: var(--deep-brown);
+  background: var(--ingredients-bg);
   border-radius: 20px;
   padding: 2rem;
   display: flex;
@@ -1100,7 +1098,7 @@ input[type="email"]::placeholder {
 }
 
 .ingredient__icon {
-  color: #8b5cf6;
+  color: var(--ingredients-icon-color);
   margin-bottom: 0.5rem;
 }
 
@@ -1126,6 +1124,9 @@ input[type="email"]::placeholder {
   flex-direction: column;
   gap: 2rem;
   padding-top: 1rem;
+  position: sticky;
+  top: 2rem;
+  align-self: start;
 }
 
 .product__header {
@@ -1143,7 +1144,7 @@ input[type="email"]::placeholder {
 .product__title {
   font-size: 3rem;
   font-weight: 800;
-  color: #8b5cf6;
+  color: var(--product-color);
   margin: 0;
   line-height: 1.1;
   text-transform: capitalize;
@@ -1167,6 +1168,9 @@ input[type="email"]::placeholder {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  font-family: 'poppins', sans-serif;
+  font-size: var(--body-size);
+  font-weight: 800;
 }
 
 .purchase-option {
@@ -1195,7 +1199,7 @@ input[type="email"]::placeholder {
   margin-right: 1rem;
   width: 20px;
   height: 20px;
-  accent-color: #8b5cf6;
+  accent-color: var(--product-color);
 }
 
 .purchase-option__label {
@@ -1204,6 +1208,29 @@ input[type="email"]::placeholder {
   align-items: center;
   width: 100%;
   cursor: pointer;
+  font-family: 'poppins', sans-serif;
+  font-size: var(--body-size);
+  font-weight: 800;
+}
+
+.product__images {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.product__image--img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+}
+
+.purchase-option__label span {
+  font-family: 'poppins', sans-serif;
+  font-size: var(--body-size);
+  font-weight: 800;
 }
 
 .purchase-option__type {
@@ -1215,7 +1242,7 @@ input[type="email"]::placeholder {
 .purchase-option__price {
   font-weight: 700;
   font-size: 1.25rem;
-  color: #8b5cf6;
+  color: var(--product-color);
 }
 
 .purchase-option--subscription .purchase-option__price {
@@ -1244,7 +1271,7 @@ input[type="email"]::placeholder {
 
 .frequency-select:focus {
   outline: none;
-  border-color: #8b5cf6;
+  border-color: var(--product-color);;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
@@ -1270,6 +1297,7 @@ input[type="email"]::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--product-color);
 }
 
 .feature__icon svg {
@@ -1353,7 +1381,7 @@ input[type="email"]::placeholder {
 
 .product__add-to-cart {
   width: 100%;
-  background: #8b5cf6;
+  background: var(--product-color);;
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -1366,9 +1394,7 @@ input[type="email"]::placeholder {
   letter-spacing: 1px;
 }
 
-.product__add-to-cart:hover {
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
