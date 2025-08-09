@@ -1,0 +1,184 @@
+<style>
+  .testimonials-section {
+    --product-bg: {{ product.metafields.custom.section_background_color.value | default: "#ffffff" }};
+    --product-color: {{ product.metafields.custom.accent_color.value | default: "#000000" }};
+    --ingredients-bg: {{ product.metafields.custom.ingredients_background_color.value | default: "#4C1E0F" }};
+    --ingredients-icon-color: {{ product.metafields.custom.ingredients_icon_color.value | default: "#FFFFFF" }};
+  }
+</style>
+
+<section class="testimonials-section">
+<div class="custom-shape-divider-bottom-1754329088">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+    </svg>
+
+</div>
+    <div class="testimonials-section-wrapper">
+        <div class="section-header">
+            <div class="eyebrow-text">Featured Reviews</div>
+            <h2 class="main-heading">Our Friendly Foods</h2>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn">⭠</button>
+            <button class="nav-btn" id="nextBtn">⭢</button>
+        </div>
+        <div class="slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="testimonial-slider-card">
+                    <div class="stars">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                    <p class="h4-poppins">"Has such a clean taste, not heavy. Tastes like real chocolate."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" alt="Charlee Jade">
+                        <p class="h4-poppins grey">Charlee Jade</p>
+                    </div>
+                </div>
+                <div class="testimonial-slider-card">
+                    <div class="stars">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                    <p class="h4-poppins">"Rich and velvety, with a perfect balance of sweetness. Amazing!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Lucas Martin">
+                        <p class="h4-poppins grey">Lucas Martin</p>
+                    </div>
+                </div>
+                <div class="testimonial-slider-card">
+                    <div class="stars">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                    <p class="h4-poppins">"Smooth and satisfying. Melts in your mouth. Luxurious experience with every bite."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Emily Stone">
+                        <p class="h4-poppins grey">Emily Stone</p>
+                    </div>
+                </div>
+                <div class="testimonial-slider-card">
+                    <div class="stars">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                    <p class="h4-poppins">"I love that I can enjoy chocolate without feeling guilty. These snacks are a game changer!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face" alt="Jane Doe">
+                        <p class="h4-poppins grey">Jane Doe</p>
+                    </div>
+                </div>
+                <div class="testimonial-slider-card">
+                    <div class="stars">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                    <p class="h4-poppins">"The texture is incredible and the flavor is so authentic. Best healthy chocolate I've tried!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Michael Chen">
+                        <p class="h4-poppins grey">Michael Chen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script>
+        let currentIndex = 0;
+        const slider = document.getElementById('sliderWrapper');
+        const testimonials = document.querySelectorAll('.testimonial-slider-card');
+        const totalSlides = testimonials.length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        // Calculate how many slides to show at once based on screen width
+        function getSlidesPerView() {
+            if (window.innerWidth >= 1200) return 3;
+            if (window.innerWidth >= 800) return 2;
+            return 1;
+        }
+        
+        function updateSlider() {
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = testimonials[0].offsetWidth + 30; // width + margin
+            const translateX = -currentIndex * slideWidth;
+            slider.style.transform = `translateX(${translateX}px)`;
+            
+            // Update button states
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= totalSlides - slidesPerView;
+        }
+        
+        function nextSlide() {
+            const slidesPerView = getSlidesPerView();
+            if (currentIndex < totalSlides - slidesPerView) {
+                currentIndex++;
+                updateSlider();
+            }
+        }
+        
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        }
+        
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Auto-slide functionality
+        let autoSlideInterval = setInterval(() => {
+            const slidesPerView = getSlidesPerView();
+            if (currentIndex >= totalSlides - slidesPerView) {
+                currentIndex = 0;
+            } else {
+                currentIndex++;
+            }
+            updateSlider();
+        }, 4000);
+        
+        // Pause auto-slide on hover
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        sliderContainer.addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(() => {
+                const slidesPerView = getSlidesPerView();
+                if (currentIndex >= totalSlides - slidesPerView) {
+                    currentIndex = 0;
+                } else {
+                    currentIndex++;
+                }
+                updateSlider();
+            }, 4000);
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            currentIndex = 0; // Reset to first slide on resize
+            updateSlider();
+        });
+        
+        // Initialize
+        updateSlider();
+    </script>

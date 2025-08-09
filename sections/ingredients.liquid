@@ -1,0 +1,27 @@
+<style>
+  .paper-bg-section {
+    --product-bg: {{ product.metafields.custom.section_background_color.value | default: "#ffffff" }};
+    --product-color: {{ product.metafields.custom.accent_color.value | default: "#000000" }};
+    --ingredients-bg: {{ product.metafields.custom.ingredients_background_color.value | default: "#4C1E0F" }};
+    --ingredients-icon-color: {{ product.metafields.custom.ingredients_icon_color.value | default: "#FFFFFF" }};
+  }
+</style>
+
+<section class="paper-bg-section">
+    <div class="paper-bottom"></div>
+
+    <div class="paper-body">
+        <div class="ingredients__content-wrapper">
+            <div class="ingredients__content">
+                <h2>Ingredients</h2>
+                <p>{{ product.metafields.custom.ingredients }}</p>
+            </div>
+
+            <div class="ingredients__content">
+                <h2>Product Details</h2>
+                <p>{{ product.metafields.custom.product_details }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+

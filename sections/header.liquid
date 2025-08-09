@@ -1,0 +1,91 @@
+<header class="site-header">
+  <div class="site-header__container">
+    
+    <!-- Logo -->
+    <a href="{{ routes.root_url }}" class="site-header__logo">
+      <div class="site-header__logo-icon">
+        {% if settings.logo %}
+            <img src="{{ settings.logo | img_url: '200x' }}" alt="{{ settings.logo.alt | escape }}">
+        {% endif %}
+      </div>
+    </a>
+
+    <!-- Main Navigation -->
+    <nav class="site-header__nav" role="navigation">
+      <ul class="site-header__nav-list">
+        <li class="site-header__nav-item">
+          <a href="{{ collections.all-products.url }}" class="site-header__nav-link">Shop</a>
+        </li>
+        <li class="site-header__nav-item">
+          <a href="{{ pages.discover.url }}" class="site-header__nav-link">Discover</a>
+        </li>
+        <li class="site-header__nav-item">
+          <a href="{{ pages.our-story.url }}" class="site-header__nav-link">Our Story</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="site-header__actions">
+      <!-- User Account -->
+      <a href="{{ routes.account_url }}" class="site-header__action-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" class="site-header__action-icon">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+      </a>
+
+      <!-- Shopping Cart -->
+      <a href="{{ routes.cart_url }}" class="site-header__action-btn site-header__cart" aria-label="Shopping Cart">
+        <svg viewBox="0 0 24 24" class="site-header__action-icon">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="site-header__cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="site-header__mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="site-header__mobile-toggle-line"></span>
+        <span class="site-header__mobile-toggle-line"></span>
+        <span class="site-header__mobile-toggle-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="site-header__mobile-nav" role="navigation">
+    <ul class="site-header__mobile-nav-list">
+      <li class="site-header__mobile-nav-item">
+        <a href="{{ collections.all-products.url }}" class="site-header__mobile-nav-link">Shop</a>
+      </li>
+      <li class="site-header__mobile-nav-item">
+        <a href="{{ pages.discover.url }}" class="site-header__mobile-nav-link">Discover</a>
+      </li>
+      <li class="site-header__mobile-nav-item">
+        <a href="{{ pages.our-story.url }}" class="site-header__mobile-nav-link">Our Story</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileToggle = document.querySelector('.site-header__mobile-toggle');
+  const siteHeader = document.querySelector('.site-header');
+  
+  if (mobileToggle && siteHeader) {
+    mobileToggle.addEventListener('click', function() {
+      const isOpen = siteHeader.classList.contains('site-header--mobile-nav-open');
+      
+      if (isOpen) {
+        siteHeader.classList.remove('site-header--mobile-nav-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        siteHeader.classList.add('site-header--mobile-nav-open');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+});
+</script>

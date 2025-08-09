@@ -1,0 +1,100 @@
+<section class="shop-page__section">
+  <div class="top-section-divider-brown">
+    <svg viewBox="0 0 1200 172" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0.5H1512V127.698C1512 127.698 1474.26 166.416 1396 171.999C1244.99 182.77 1115.41 67.7538 964.004 71.5753C816.719 75.2927 710.751 160.63 563.504 155.815C433.732 151.571 331.712 61.0607 202.004 55.3914C102.345 51.0354 0.00396729 127.698 0.00396729 127.698L0 0.5Z" fill="#4C1E0F"/>
+    </svg>
+  </div>
+  
+  <div class="shop-page">
+        <div class="shop-page__filters">
+      <button class="filter-btn" data-filter="all">All Products</button>
+      <button class="filter-btn" data-filter="chocolate-bark">Chocolate Bark</button>
+      <button class="filter-btn" data-filter="dried-fruit">Dried Fruit</button>
+      <button class="filter-btn" data-filter="bestsellers">Best Sellers</button>
+      <button class="filter-btn" data-filter="award-winners">Award-Winners</button>
+
+    </div>
+    
+<div class="shop-page__container">
+  {% for product in collections.all.products %}
+    <div class="product-card" data-categories="{{ product.product_type | handleize }} {{ product.tags | join: ' ' }}">
+      {% render 'product-card', product: product %}
+    </div>
+  {% endfor %}
+</div>
+
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const productCards = document.querySelectorAll('.product-card');
+
+  // Helper to convert string to handle format like Shopify handleize
+  function handleize(str) {
+    return str
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')        // replace spaces with dash
+      .replace(/[^\w\-]+/g, '')   // remove all non-word chars except dash
+      .replace(/\-\-+/g, '-')     // replace multiple dashes with single dash
+      .replace(/^-+/, '')         // trim starting dash(es)
+      .replace(/-+$/, '');        // trim ending dash(es)
+  }
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      let rawFilterValue = this.getAttribute('data-filter');
+      const filterValue = handleize(rawFilterValue);
+
+      console.log(`Filtering for: "${rawFilterValue}" normalized to "${filterValue}"`);
+
+      // Update active button styles
+      filterButtons.forEach(btn => btn.classList.remove('filter-btn--active'));
+      this.classList.add('filter-btn--active');
+
+      productCards.forEach(card => {
+        // Find the <a> with data-categories inside this card
+        const link = card.querySelector('a[data-categories]');
+        if (!link) {
+          console.warn('No data-categories found on product card:', card);
+          return;
+        }
+
+        const categories = link.getAttribute('data-categories') || '';
+        const categoriesArr = categories.split(/\s+/);
+
+        // Debug log for categories found on this product
+        console.log(`Product categories: [${categoriesArr.join(', ')}]`);
+
+        if (filterValue === 'all' || categoriesArr.includes(filterValue)) {
+          card.classList.remove('hidden');
+          card.style.display = 'block';
+        } else {
+          card.classList.add('hidden');
+          card.style.display = 'none';
+        }
+      });
+
+      // Animation delay for visible cards
+      const visibleCards = document.querySelectorAll('.product-card:not(.hidden)');
+      visibleCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
+  });
+});
+
+</script>
+<script>
+productCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const categories = (card.getAttribute('data-categories') || '').trim();
+    const categoriesArr = categories.split(/\s+/);
+    console.log('Clicked card:', card);
+    console.log('Categories:', categoriesArr);
+  });
+});
+
+</script>

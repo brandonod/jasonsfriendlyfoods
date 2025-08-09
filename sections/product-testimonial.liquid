@@ -1,0 +1,26 @@
+<style>
+  .product-testimonial {
+    --product-bg: {{ product.metafields.custom.section_background_color.value | default: "#ffffff" }};
+    --product-color: {{ product.metafields.custom.accent_color.value | default: "#000000" }};
+    --ingredients-bg: {{ product.metafields.custom.ingredients_background_color.value | default: "#4C1E0F" }};
+    --ingredients-icon-color: {{ product.metafields.custom.ingredients_icon_color.value | default: "#FFFFFF" }};
+  }
+</style>
+
+<section
+  class="product-testimonial"
+  style="background-image: url('{{ product.featured_image | img_url: 'master' }}');">
+  <div class="paper-bottom paper-bottom-reverse"></div>
+    <div class="product-testimonial__cards">
+      <div class="testimonial-card-wrapper">
+          <div class="testimonial-card">
+            <h2>{{ product.metafields.custom.testimonial | default: "I don’t know how he did it but the lavender and the salt are the perfect combination" }}</h2>
+            <p>{{ product.metafields.custom.reviewer | default: "-JUDGE, OREGON CHOCOLATE FESTIVAL" }}</p>
+          </div>
+      </div>
+
+      <div class="features-card">
+        <p>{{ product.metafields.custom.review_feature | default: "Made-to-order chocolate bark flavored with lavender oil & pink Himalayan salt" }}</p>
+      </div>
+    </div>
+</section>

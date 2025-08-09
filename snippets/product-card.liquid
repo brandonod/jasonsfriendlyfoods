@@ -1,0 +1,44 @@
+<a href="{{ product.url | escape }}" 
+   data-categories="{{ product.product_type | handleize }} {{ product.tags | join: ' ' }} {{ product.collections | map: 'handle' | join: ' ' }}">
+
+  
+  <div class="product-card__image">
+    {% if product.images.size > 0 %}
+      <img 
+        class="product-image--default"
+        src="{{ product.images[1] | img_url: '400x400' }}" 
+        alt="{{ product.title | escape }}" 
+        loading="lazy" 
+        width="400" 
+        height="250"
+      >
+    {% endif %}
+
+    {% if product.images.size > 1 %}
+      <img 
+        class="product-image--hover"
+        src="{{ product.images[0] | img_url: '400x400' }}" 
+        alt="{{ product.title | escape }}" 
+        loading="lazy" 
+        width="400" 
+        height="250"
+      >
+    {% endif %}
+  </div>
+
+  <div class="product-card__info" 
+       style="--product-color: {{ product.metafields.custom.accent_color.value | default: '#4C1E0F' }}">
+    <div class="custom-shape-divider-top-1754695658">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+    <h3 class="product-card__title">{{ product.title }}</h3>
+    <p class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="price-compare">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+      <span class="price-current">{{ product.price | money }}</span>
+    </p>
+  </div>
+</a>
