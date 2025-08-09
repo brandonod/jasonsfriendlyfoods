@@ -277,7 +277,7 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
 
 .value-carousel {
     margin-top: -75px;
-    background-image: url('/assets/value-carousel-bg.svg');
+    background-image: url({{ 'value-carousel-bg.svg' | asset_url }});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -425,18 +425,18 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
   border-radius: 0 0 15px 15px;
   padding: 20px;
   color: var(--text-white);
-  background-image: url('/assets/purple-wave.svg');
+  background-image:  url({{ 'purple-wave.svg' | asset_url }});
 }
 
 .salted-caramel-bark {
-  background-image: url('/assets/brown-wave.png');
+  background-image: url({{ 'brown-wave.png' | asset_url }});
   border-radius: 0 0 15px 15px;
   padding: 20px;
   color: var(--text-white);
 }
 
 .raspbery-chocolate-bark {
-  background-image: url('/assets/raspberyy-wave.png');
+  background-image: url({{ 'raspberyy-wave.png' | asset_url }});
   border-radius: 0 0 15px 15px;
   padding: 20px;
   color: var(--text-white);
@@ -447,7 +447,7 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
 }
 
 .paper-bg {
-  background-image: url('/assets/paper-bg(2).png');
+  background-image: url({{ 'paper-bg.png' | asset_url }});
   background-repeat: no-repeat;
   background-size: cover;   /* or 'contain' depending on the image */
   background-position: center;
@@ -468,7 +468,7 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
 }
 
 .paper-top {
-  background: url('/assets/paper-bg-bottom(3).png') no-repeat center top;
+  background: url({{ 'paper-bg-bottom(3).png' | asset_url }}) no-repeat center top;
   background-repeat: repeat-y;
   background-size: cover;
   background-position: center;
@@ -485,7 +485,7 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
 }
 
 .paper-body {
-  background: url('/assets/paper-bg(2).png'); /* your main paper texture */
+  background: url({{ 'paper-bg(2).png' | asset_url }}); /* your main paper texture */
   background-repeat: repeat-y;
   background-size: cover;
   background-position: center;
@@ -495,7 +495,7 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
 
 
 .paper-bottom {
-  background: url('/assets/paper-bg-bottom.png') no-repeat center bottom;
+  background: url({{ 'paper-bg-bottom.png' | asset_url }}) no-repeat center bottom;
   background-repeat: repeat-y;
   background-size: cover;
   background-position: center;
@@ -518,7 +518,7 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
   left: 0;
   width: 100%; /* full viewport width */
   height: 150px;
-  background-image: url('/assets/paper-bg-bottom.png');
+  background-image: url({{ 'paper-bg-bottom.png' | asset_url }});
   background-repeat: no-repeat;
   background-size: contain; /* or: background-size: 100% auto; */
   background-position: top center;
@@ -747,7 +747,7 @@ a:not(.btn):not(.red-btn):not(.green-btn):not(.orange-btn):hover {
 }
 
 .pink-divider {
-  background-image: url('/assets/pink-section-divider.svg');
+  background-image: url({{ 'pink-section-divider.svg' | asset_url }});
   background-repeat: no-repeat;
   background-size: cover;   /* or 'contain' depending on the image */
   background-position: center;
