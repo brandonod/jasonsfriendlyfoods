@@ -1,0 +1,60 @@
+<section class="aboutus-video">
+    <div class="red-top-divider">
+    <svg viewBox="0 0 1512 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 0.500004L1512 0.500027V119.476C1512 119.476 1474.26 171.536 1396 179.042C1244.99 193.526 1115.4 38.8764 964 44.0147C816.715 49.0131 710.747 163.757 563.5 157.282C433.728 151.575 331.708 29.877 202 22.2541C102.341 16.3971 0 119.476 0 119.476V0.500004Z" fill="#EC2327"/>
+    </svg>
+
+</div>
+
+    <div class="aboutus__video--content">
+        <h5>FROM OUR FOUNDER</h5>
+        <h2>Founded on Jason’s Childhood Love of Wholesome Ingredients, Snacks & Adventure</h2>
+        <div class="video-container">
+            <video controls preload="metadata" >
+                <source src="strawberrydrizzle.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button class="play-button" aria-label="Play">
+                <svg width="78" height="77" viewBox="0 0 78 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M38.9156 0.065918C31.3278 0.065918 23.9105 2.31594 17.6015 6.53147C11.2925 10.747 6.37529 16.7387 3.47159 23.7488C0.567892 30.759 -0.191848 38.4728 1.28845 45.9147C2.76874 53.3566 6.42258 60.1925 11.7879 65.5578C17.1533 70.9232 23.9891 74.577 31.4311 76.0573C38.873 77.5376 46.5868 76.7779 53.5969 73.8742C60.6071 70.9705 66.5988 66.0532 70.8143 59.7443C75.0298 53.4353 77.2798 46.0179 77.2798 38.4302C77.2798 33.3921 76.2875 28.4034 74.3595 23.7488C72.4315 19.0943 69.6057 14.865 66.0432 11.3026C62.4807 7.7401 58.2515 4.91421 53.5969 2.98623C48.9424 1.05824 43.9536 0.065918 38.9156 0.065918ZM31.2427 55.6941V21.1663L54.2613 38.4302L31.2427 55.6941Z" fill="#FE921E"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+            <div class="brown-bottom-divider">    
+            <svg viewBox="0 0 1512 156" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M171.964 40.3687C100.175 37.4627 0 77.7005 0 77.7005V145.586C0 151.109 4.47711 155.586 9.99996 155.586H1502C1507.52 155.586 1512 151.109 1512 145.586V51.9283C1512 51.9283 1487.75 37.2112 1467.58 32.0306C1405.77 16.1524 1375.41 67.3569 1307.73 70.689C1205.79 75.7078 1168.81 17.1338 1066.78 12.7014C935.42 6.99473 879.817 89.6053 749.774 77.7005C648.503 68.4296 628.286 -4.23428 525.986 0.194264C428.004 4.43591 427.701 89.9766 329.456 88.6916C259.433 87.7758 241.825 43.1967 171.964 40.3687Z" fill="#4C1E0F"/>
+            </svg>
+        </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const videoContainer = document.querySelector(".video-container");
+  const video = videoContainer.querySelector("video");
+  const playButton = videoContainer.querySelector(".play-button");
+
+  // When the play button is clicked
+  playButton.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+
+  // Hide the play button while playing
+  video.addEventListener("play", () => {
+    playButton.style.display = "none";
+  });
+
+  // Show the play button when paused
+  video.addEventListener("pause", () => {
+    playButton.style.display = "block";
+  });
+
+  // Show again when the video ends
+  video.addEventListener("ended", () => {
+    playButton.style.display = "block";
+  });
+});
+</script>
+</section>  
